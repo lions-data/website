@@ -38,7 +38,6 @@
               {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u51e6\u7406", url: "#_3" },
               {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u96c6\u8a08, \u53ef\u8996\u5316", url: "#_8" },
               {title: "\u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#_14" },
-              {title: "\u307e\u3068\u3081", url: "#_15" },
           ]},
         ];
 
@@ -79,7 +78,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <h2 id="knime">KNIME 入門編 / クラスタリング</h2>
 <ul>
 <li>作成日: 2020-04-17</li>
-<li>更新日: 2020-04-24</li>
+<li>更新日: 2020-04-26</li>
 </ul>
 <p>今回は、すでにデータ整形が終わっている分析用データ <em>(トレーニングジム会員の利用履歴)</em> を使い 会員のクラスタリング <em>(クラスター分析)</em> を行い、それぞれのクラスターの行動の傾向を確認します。クラスタリングとは、異なる性質・特徴をもつものが混在する集合から似た性質・特徴を持つグループを作ることです。基本的なデータ解析手法としてデータマイニングでも頻繁に利用されている手法です。</p>
 <p>クラスタリングの手法がいくつかありますが、今回は、非階層クラスタリングに属する <a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank">k-means</a> を使います。 <strong>非階層クラスタリング</strong>は、予め作成するクラスター数を決定し、決めた数の階層を持たないクラスター <em>(グループ)</em> にサンプルを分割する方法です。サンプル数が極めて大きいビッグデータ分析に適しています。</p>
@@ -176,12 +175,27 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p><em>Fig. テーブル結合 / 設定 (1)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-1-1.png" /></p>
 <ul>
-<li><code>right table</code> は、<code>membership_period (会員期間)</code> と <code>Cluster (クラスター)</code> を対象カラムに指定し、重複するカラムを対象外にする</li>
+<li><code>right table</code> には、次の3カラムを指定する <em>(重複するカラムを対象外にする)</em><ul>
+<li><code>mean (平均利用回数/月)</code></li>
+<li><code>membership_period (会員期間)</code></li>
+<li><code>Cluster (クラスター)</code></li>
+</ul>
+</li>
 </ul>
 <p><em>Fig. テーブル結合 / 設定 (2)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-1-2.png" /></p>
 <h4 id="_10">集計</h4>
+<p>集計の目的は、クラスター別 会員の行動の特徴を把握することです。このセクションでは、「クラスター別退会者集計」と「クラスター別定期利用者集計」を行います。</p>
 <h5 id="_11">クラスター別退会者集計</h5>
+<ul>
+<li>グループ化対象カラムに、<code>Cluster (クラスター)</code>、<code>is_deleted (途中退会者)</code> を指定し、<strong>クラスター別退会者</strong> を集計する</li>
+<li>集計対象カラムは、<code>customer_id (会員ID)</code>とし、集計方法は <code>Count</code> を指定する</li>
+<li>集計結果の着目点は以下の通り<ul>
+<li><code>cluster_0</code> 退会者数 が最も多い</li>
+<li><code>cluster_1</code> 継続会員数 が二番目に多い</li>
+</ul>
+</li>
+</ul>
 <p><em>Fig. 集計 / クラスター別退会者集計 / 設定 (1)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-1.png" /></p>
 <p><em>Fig. 集計 / クラスター別退会者集計 / 設定 (2)</em></p>
@@ -189,28 +203,80 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p><em>Fig. 集計 / クラスター別退会者集計 / 結果テーブル</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-3.png" /></p>
 <h5 id="_12">クラスター別定期利用者集計</h5>
+<ul>
+<li>グループ化対象カラムに、<code>Cluster (クラスター)</code>、<code>routine_flg (定期利用フラグ)</code> を指定し、<strong>クラスター別定期利用者</strong> を集計する</li>
+<li>集計対象カラムは、<code>customer_id (会員ID)</code>とし、集計方法は <code>Count</code> を指定する</li>
+<li>集計結果の着目点は以下の通り<ul>
+<li><code>cluster_2</code> 定期利用者数 が最も多い</li>
+<li><code>cluster_1</code> 定期利用者数 が二番目に多い</li>
+</ul>
+</li>
+</ul>
 <p><em>Fig. 集計 / クラスター別定期利用者集計 / 設定 (1)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-3-1.png" /></p>
 <p><em>Fig. 集計 / クラスター別定期利用者集計 / 設定 (2)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-3-2.png" /></p>
 <p><em>Fig. 集計 / クラスター別定期利用者集計 / 結果テーブル</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-3-3.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.groupby.GroupByNodeFactory">Nodes / Manipulation / RowRow / Transform / GroupBy</a></li>
+</ul>
 <h4 id="_13">可視化</h4>
-<h5 id="parallel-coordinates-plot">Parallel Coordinates Plot</h5>
+<p>データの中にあるカテゴリー同士の類似性や関係を理解するため、チャートをいくつか作成しデータの理解を深めます。次の三種類のチャートを作成します。</p>
+<ol>
+<li>Parallel Coordinates Plot <em>(平行座標)</em></li>
+<li>Scatter Plot / 2D/3D Scatterplot <em>(散布図)</em></li>
+<li>Conditional Box Plot <em>(箱ひげ図)</em></li>
+</ol>
+<h5 id="1-parallel-coordinates-plot">1. Parallel Coordinates Plot</h5>
+<ul>
+<li>Parallel Coordinates Plot <em>(平行座標)</em> を作成するのに必要な列、<code>mean (平均利用回数/月)</code>、<code>membership_period (会員期間)</code>、<code>Cluster (クラスター)</code> を指定する</li>
+<li>各列の関係 - <code>mean (平均利用回数/月)</code> =&gt; <code>membership_period (会員期間)</code> =&gt; <code>Cluster (クラスター)</code> を確認する</li>
+</ul>
 <p><em>Fig. 可視化 / Parallel Coordinates Plot / 設定</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-4-1.png" /></p>
 <p><em>Fig. 可視化 / Parallel Coordinates Plot / 結果</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-4-2.png" /></p>
-<h5 id="scatter-plot-1">Scatter Plot (1)</h5>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Parallel%20Coordinates%20Plot">Nodes / Views / JavaScript / Parallel Coordinates Plot</a></li>
+</ul>
+<h5 id="2-1-scatter-plot-1">2-1. Scatter Plot (1)</h5>
+<ul>
+<li>X軸に <code>membership_period (会員期間)</code>、Y軸に <code>mean (平均利用回数/月)</code> を指定する</li>
+<li>各クラスターが色分けされプロットされていることがわかり、綺麗に4つのクラスターができていることを確認し、各クラスターの <code>membership_period (会員期間)</code>と<code>mean (平均利用回数/月)</code>の関係も確認する</li>
+</ul>
 <p><em>Fig. 可視化 / Scatter Plot (1) / 設定</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-5-1.png" /></p>
 <p><em>Fig. 可視化 / Scatter Plot (1) / 結果</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-5-2.png" /></p>
-<h5 id="scatter-plot-2">Scatter Plot (2)</h5>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.js.base.node.viz.plotter.scatterSelectionAppender.ScatterPlotNodeFactory">Nodes / Views / JavaScript / Scatter Plot</a></li>
+</ul>
+<h5 id="2-2-scatter-plot-2">2-2. Scatter Plot (2)</h5>
+<ul>
+<li>「2-1. Scatter Plot (1)」と同じ</li>
+</ul>
 <p><em>Fig. 可視化 / Scatter Plot (2) / 設定</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-6-1.png" /></p>
 <p><em>Fig. 可視化 / Scatter Plot (2) / 結果</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-6-2.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.erlwood.knime.nodes.graph.NGraphNodeFactory">Nodes / Community Nodes / Erlwood Nodes / Viewers</a></li>
+</ul>
+<h5 id="3-conditional-box-plot">3. Conditional Box Plot</h5>
+<ul>
+<li>Box Plot <em>(箱ひげ図)</em> を作成し、各クラスターの <code>membership_period (会員期間)</code> と <code>mean (平均利用回数/月)</code> の<strong>データのばらつき</strong>を確認する</li>
+<li><code>Category column</code> に <code>Cluster (クラスター)</code> を指定、対象カラムに <code>membership_period (会員期間)</code> と <code>mean (平均利用回数/月)</code> を指定する</li>
+</ul>
+<p><em>Fig. 可視化 / Conditional Box Plot / 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-7-1.png" /></p>
+<p><em>Fig. 可視化 / Conditional Box Plot / クラスター別平均利用回数/月</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-7-2.png" /></p>
+<p><em>Fig. 可視化 / Conditional Box Plot / クラスター別会員期間</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-7-3.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Conditional%20Box%20Plot">Nodes / Views / JavaScript / Conditional Box Plot</a></li>
+</ul>
 <h3 id="_14">利用ノード一覧</h3>
 <ul>
 <li><a href="https://nodepit.com/node/org.knime.base.node.io.csvreader.CSVReaderNodeFactory">IO / Read / CSV Reader</a></li>
@@ -218,8 +284,12 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li><a href="https://nodepit.com/node/org.knime.base.node.preproc.normalize3.Normalizer3NodeFactory">Nodes / Manipulation / Column / Transform</a></li>
 <li><a href="https://nodepit.com/workflow/com.knime.hub%2FUsers%2Ftaka%2FPublic%2Fclustering(k-means)">Workflows / KNIME Hub / Users / taka / Public / k-means</a></li>
 <li><a href="https://nodepit.com/node/org.knime.base.node.viz.property.color.ColorManager2NodeFactory">Nodes / Views / Property / Color Manager</a></li>
+<li><a href="https://nodepit.com/node/org.knime.base.node.preproc.groupby.GroupByNodeFactory">Nodes / Manipulation / RowRow / Transform / GroupBy</a></li>
+<li><a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Parallel%20Coordinates%20Plot">Nodes / Views / JavaScript / Parallel Coordinates Plot</a></li>
+<li><a href="https://nodepit.com/node/org.knime.js.base.node.viz.plotter.scatterSelectionAppender.ScatterPlotNodeFactory">Nodes / Views / JavaScript / Scatter Plot</a></li>
+<li><a href="https://nodepit.com/node/org.erlwood.knime.nodes.graph.NGraphNodeFactory">Nodes / Community Nodes / Erlwood Nodes / Viewers</a></li>
+<li><a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Conditional%20Box%20Plot">Nodes / Views / JavaScript / Conditional Box Plot</a></li>
 </ul>
-<h3 id="_15">まとめ</h3>
 
   <br>
     
