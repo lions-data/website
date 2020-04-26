@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="author" content="Lions Data, Ltd.">
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>KNIME 入門編 / クラスタリング - Lions Data's Blog</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "KNIME \u5165\u9580\u7de8 / \u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0", url: "#_top", children: [
+              {title: "\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u5168\u4f53", url: "#_1" },
+              {title: "\u5206\u6790\u7528\u30c7\u30fc\u30bf\u8aad\u307f\u8fbc\u307f", url: "#_2" },
+              {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u51e6\u7406", url: "#_3" },
+              {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u96c6\u8a08, \u53ef\u8996\u5316", url: "#_8" },
+              {title: "\u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#_14" },
+              {title: "\u307e\u3068\u3081", url: "#_15" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav">
+      <a href="../knime-2/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../knime-2/" class="btn btn-xs btn-link">
+        KNIME 入門編 / 探索的データ分析
+      </a>
+    </div>
+    
+  </div>
+
+    
+
+    <h2 id="knime">KNIME 入門編 / クラスタリング</h2>
+<ul>
+<li>作成日: 2020-04-17</li>
+<li>更新日: 2020-04-24</li>
+</ul>
+<p>今回は、すでにデータ整形が終わっている分析用データ <em>(トレーニングジム会員の利用履歴)</em> を使い 会員のクラスタリング <em>(クラスター分析)</em> を行い、それぞれのクラスターの行動の傾向を確認します。クラスタリングとは、異なる性質・特徴をもつものが混在する集合から似た性質・特徴を持つグループを作ることです。基本的なデータ解析手法としてデータマイニングでも頻繁に利用されている手法です。</p>
+<p>クラスタリングの手法がいくつかありますが、今回は、非階層クラスタリングに属する <a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank">k-means</a> を使います。 <strong>非階層クラスタリング</strong>は、予め作成するクラスター数を決定し、決めた数の階層を持たないクラスター <em>(グループ)</em> にサンプルを分割する方法です。サンプル数が極めて大きいビッグデータ分析に適しています。</p>
+<h3 id="_1">ワークフロー全体</h3>
+<p>整形後データ読み込んだ後に、クラスタリングを実行し、最後にクラスタリング結果の可視化と集計を行います。</p>
+<ol>
+<li>顧客+利用履歴データ <em>(CSV形式ファイル)</em> 読み込み</li>
+<li>データ探索 <em>(確認)</em></li>
+<li>クラスタリング</li>
+<li>可視化 + 集計</li>
+</ol>
+<p><em>Fig. 全体ワークフロー</em></p>
+<p><img alt="ワークフロー" src="../images/knime-3/workflow.png" /></p>
+<h3 id="_2">分析用データ読み込み</h3>
+<h4 id="csv">顧客データ + 利用履歴 CSVファイル 読込み</h4>
+<p>読込み対象のCSVファイルの文字コードが <code>UTF-8</code> であることを事前に確認した後、KNIMEに 顧客データ + 利用履歴 <em>(CSV)</em> を読み込み設定を行います。主に 列タイトル行の存在、区切り文字 <em>(delimiter)</em> を設定します。KNIMEにデータのインポートが完了した後に、ファイルが正しくロードされているか確認します。</p>
+<ol>
+<li>ローカルファイルにある <code>顧客データ + 利用履歴 CSVファイル</code> を指定し、<code>Has Row Header (行見出し存在)</code> のチェックを外す</li>
+<li>CSVファイルの読み込み成功後、データプレビューエリアにレコードが表示される</li>
+</ol>
+<p><em>Fig. CSVファイル 読込み 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-1/wf1-node-1-1.png" /></p>
+<p><em>Fig. CSVファイル テーブル表示</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-1/wf1-node-1-2.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.io.csvreader.CSVReaderNodeFactory">IO / Read / CSV Reader</a></li>
+</ul>
+<h3 id="_3">クラスタリング / 処理</h3>
+<p><em>Fig. クラスタリング / 処理 / ワークフロー</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf-part-2.png" /></p>
+<h4 id="_4">準備 / データ探索</h4>
+<p>読み込んだデータが どのような特徴を持っているのか把握しておく必要があります。<code>Data Explorer</code> ノードを使い簡単なデータ分析　- 探索的データ分析 <em>(Exploratory Data Analysis: EDA)</em> を行います。次の情報を確認します。</p>
+<h5 id="1">1. 月の利用回数の分布</h5>
+<p>利用者の月の利用回数は、3回から5回が多いことがわかります</p>
+<p><em>Fig. データ探索 / mean (利用回数 平均/月)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-1.png" /></p>
+<h5 id="2">2. 会員期間の分布</h5>
+<p>会員期間は、1年未満の利用者が多いことがわかります。依って、一年以上の会員期間の利用者は、継続的に利用していることがわかります</p>
+<p><em>Fig. データ探索 / membership_period (会員期間)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-2.png" /></p>
+<h5 id="3">3. 退会会員数</h5>
+<p>退会会員数は、継続会員数の約半数ということがわかります</p>
+<p><em>Fig. データ探索 / membership is_deleted (退会)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-3.png" /></p>
+<h5 id="4">4. 月額金額の分布</h5>
+<p>月額金額は三種類あり <em>[6000円, 7500円, 10500円]</em> 、その中でも10,500円のコースの会員数が他のそれぞれのコースの二倍近くいることがわかります</p>
+<p><em>Fig. データ探索 / membership price (月額)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-4.png" /></p>
+<h5 id="5">5. 質的データの要約</h5>
+<p>データの要約 <em>(サマリー)</em> を見ていくと、このデータの概要を理解することができます。</p>
+<p><code>end_date</code> の結果は、退会した人が 2842人いて ユニークな値が 12存在します。「2842人が退会した日が12日ある」ことを意味します。その一方、<code>start_date</code> の結果は、「入会日は 215日ある」その日数は、退会日よりも多いことがわかります。その他、クラ数数、キャンペーンう数等を把握することができます。</p>
+<p><em>Fig. データ探索 / Nominal</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-5.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.stats.dataexplorer.DataExplorerNodeFactory">Nodes / KNIME Labs / JavaScript Views (Labs) / Data Explorer</a></li>
+</ul>
+<h4 id="_5">正規化</h4>
+<p>クラスタリング処理を行う前に 数値データのスケールを 0から1の範囲に線形変換 <em>(Linear transformation)</em> します。</p>
+<p>正規化 設定画面で、正規化対象のカラム - <code>mean (平均 利用回数/月)</code>, <code>membership_pedriod (会員期間)</code> を選択します。</p>
+<p><em>Fig. Normalizaer 正規化 / 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-1-1.png" /></p>
+<p>正規化処理後、<code>mean (平均 利用回数/月)</code>, <code>membership_pedriod (会員期間)</code> の各列の値が 「0〜1 の範囲」に変換されたことを確認します。</p>
+<p><em>Fig. Normalizaer 正規化 / 正規化 後テーブル</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-1-2.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.normalize3.Normalizer3NodeFactory">Nodes / Manipulation / Column / Transform / Normalizer</a></li>
+</ul>
+<h4 id="_6">クラスタリング</h4>
+<p>トレーニングジムの会員の行動傾向を4つのクラスターに分けます。クラスタリング 設定画面の <code>Number of clusters (クラスター数)</code> の値を 「4」に設定します。また、クラスタリングに必要なカラムに <code>mean (平均利用回数/月)</code> と <code>membership_period (会員期間)</code> の二つを選択します。</p>
+<p><em>Fig. クラスタリング 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-3-1.png" /></p>
+<p>クラスタリング後の結果を コンテキストメニュー <em>(ポップアップメニュー)</em> の <code>Clusters</code> を実行し、4つのクラスターの存在と、それぞれのクラスターの値を確認します。</p>
+<p><em>Fig. クラスタリング 結果 テーブル</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-3-3.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/workflow/com.knime.hub%2FUsers%2Ftaka%2FPublic%2Fclustering(k-means)">Workflows / KNIME Hub / Users / taka / Public / k-means</a></li>
+</ul>
+<h4 id="_7">クラスタリング 色指定</h4>
+<p>可視化した時に 4つのクラスターに属する値を容易に判別できるように、それぞれのクラスターの色を指定します。この処理に依り、生成されたチャートにプロットされた値がどのクラスターに属しているかわかります。</p>
+<p><em>Fig. クラスタリング 色指定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-4-1.png" /></p>
+<ul>
+<li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.viz.property.color.ColorManager2NodeFactory">Nodes / Views / Property / Color Manager</a></li>
+</ul>
+<h3 id="_8">クラスタリング / 集計, 可視化</h3>
+<p><em>Fig. クラスタリング / 集計, 可視化</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf-part-3.png" /></p>
+<h4 id="_9">テーブル結合</h4>
+<p>正規化処理で 実際のデータと異なる値を持つカラム (<code>mean (平均利用回数/月)</code>, <code>membership_period (会員期間)</code>) が存在しているので、正規化前後のそれぞれの値を使えるように、正規化前の元のテーブルと正規化後のテーブルを結合します。</p>
+<ul>
+<li><code>join mode</code> に <code>inner join (内部結合)</code> を選択する</li>
+<li>結合するカラムに <code>left table</code>、<code>right table</code> 共に <code>Row ID</code> を指定する</li>
+</ul>
+<p><em>Fig. テーブル結合 / 設定 (1)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-1-1.png" /></p>
+<ul>
+<li><code>right table</code> は、<code>membership_period (会員期間)</code> と <code>Cluster (クラスター)</code> を対象カラムに指定し、重複するカラムを対象外にする</li>
+</ul>
+<p><em>Fig. テーブル結合 / 設定 (2)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-1-2.png" /></p>
+<h4 id="_10">集計</h4>
+<h5 id="_11">クラスター別退会者集計</h5>
+<p><em>Fig. 集計 / クラスター別退会者集計 / 設定 (1)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-1.png" /></p>
+<p><em>Fig. 集計 / クラスター別退会者集計 / 設定 (2)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-2.png" /></p>
+<p><em>Fig. 集計 / クラスター別退会者集計 / 結果テーブル</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-3.png" /></p>
+<h5 id="_12">クラスター別定期利用者集計</h5>
+<p><em>Fig. 集計 / クラスター別定期利用者集計 / 設定 (1)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-3-1.png" /></p>
+<p><em>Fig. 集計 / クラスター別定期利用者集計 / 設定 (2)</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-3-2.png" /></p>
+<p><em>Fig. 集計 / クラスター別定期利用者集計 / 結果テーブル</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-3-3.png" /></p>
+<h4 id="_13">可視化</h4>
+<h5 id="parallel-coordinates-plot">Parallel Coordinates Plot</h5>
+<p><em>Fig. 可視化 / Parallel Coordinates Plot / 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-4-1.png" /></p>
+<p><em>Fig. 可視化 / Parallel Coordinates Plot / 結果</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-4-2.png" /></p>
+<h5 id="scatter-plot-1">Scatter Plot (1)</h5>
+<p><em>Fig. 可視化 / Scatter Plot (1) / 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-5-1.png" /></p>
+<p><em>Fig. 可視化 / Scatter Plot (1) / 結果</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-5-2.png" /></p>
+<h5 id="scatter-plot-2">Scatter Plot (2)</h5>
+<p><em>Fig. 可視化 / Scatter Plot (2) / 設定</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-6-1.png" /></p>
+<p><em>Fig. 可視化 / Scatter Plot (2) / 結果</em></p>
+<p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-6-2.png" /></p>
+<h3 id="_14">利用ノード一覧</h3>
+<ul>
+<li><a href="https://nodepit.com/node/org.knime.base.node.io.csvreader.CSVReaderNodeFactory">IO / Read / CSV Reader</a></li>
+<li><a href="https://nodepit.com/node/org.knime.base.node.stats.dataexplorer.DataExplorerNodeFactory">Nodes / KNIME Labs / JavaScript Views (Labs) / Data Explorer</a></li>
+<li><a href="https://nodepit.com/node/org.knime.base.node.preproc.normalize3.Normalizer3NodeFactory">Nodes / Manipulation / Column / Transform</a></li>
+<li><a href="https://nodepit.com/workflow/com.knime.hub%2FUsers%2Ftaka%2FPublic%2Fclustering(k-means)">Workflows / KNIME Hub / Users / taka / Public / k-means</a></li>
+<li><a href="https://nodepit.com/node/org.knime.base.node.viz.property.color.ColorManager2NodeFactory">Nodes / Views / Property / Color Manager</a></li>
+</ul>
+<h3 id="_15">まとめ</h3>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav">
+      <a href="../knime-2/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../knime-2/" class="btn btn-xs btn-link">
+        KNIME 入門編 / 探索的データ分析
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content"><p>(c) 2020 Lions Data, Ltd. All rights reserved.</p>
+  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
