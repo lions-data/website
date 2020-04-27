@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
-     <loc>None</loc>
-     <lastmod>2020-04-26</lastmod>
+     <loc>https://lions-data.com/</loc>
+     <lastmod>2020-04-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-04-26</lastmod>
+     <loc>https://lions-data.com/data-science/knime/</loc>
+     <lastmod>2020-04-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-04-26</lastmod>
+     <loc>https://lions-data.com/data-science/knime/knime-1/</loc>
+     <lastmod>2020-04-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-04-26</lastmod>
+     <loc>https://lions-data.com/data-science/knime/knime-2/</loc>
+     <lastmod>2020-04-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
-     <loc>None</loc>
-     <lastmod>2020-04-26</lastmod>
+     <loc>https://lions-data.com/data-science/knime/knime-3/</loc>
+     <lastmod>2020-04-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="author" content="Lions Data, Ltd.">
-    
+    <link rel="canonical" href="https://lions-data.com/data-science/knime/knime-3/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>KNIME 入門編 / クラスタリング - Lions Data's Blog</title>
+    <title>KNIME 入門編 / クラスタリング - Lions Data / Blog</title>
     <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../../css/base.css" rel="stylesheet">
@@ -37,7 +37,8 @@
               {title: "\u5206\u6790\u7528\u30c7\u30fc\u30bf\u8aad\u307f\u8fbc\u307f", url: "#_2" },
               {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u51e6\u7406", url: "#_3" },
               {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u96c6\u8a08, \u53ef\u8996\u5316", url: "#_8" },
-              {title: "\u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#_14" },
+              {title: "\u307e\u3068\u3081", url: "#_14" },
+              {title: "Appendix / \u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#appendix" },
           ]},
         ];
 
@@ -77,8 +78,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     <h2 id="knime">KNIME 入門編 / クラスタリング</h2>
 <ul>
-<li>作成日: 2020-04-17</li>
-<li>更新日: 2020-04-26</li>
+<li>初版作成日: 2020-04-17</li>
+<li>最終更新日: 2020-04-24</li>
 </ul>
 <p>今回は、すでにデータ整形が終わっている分析用データ <em>(トレーニングジム会員の利用履歴)</em> を使い 会員のクラスタリング <em>(クラスター分析)</em> を行い、それぞれのクラスターの行動の傾向を確認します。クラスタリングとは、異なる性質・特徴をもつものが混在する集合から似た性質・特徴を持つグループを作ることです。基本的なデータ解析手法としてデータマイニングでも頻繁に利用されている手法です。</p>
 <p>クラスタリングの手法がいくつかありますが、今回は、非階層クラスタリングに属する <a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank">k-means</a> を使います。 <strong>非階層クラスタリング</strong>は、予め作成するクラスター数を決定し、決めた数の階層を持たないクラスター <em>(グループ)</em> にサンプルを分割する方法です。サンプル数が極めて大きいビッグデータ分析に適しています。</p>
@@ -277,7 +278,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Conditional%20Box%20Plot">Nodes / Views / JavaScript / Conditional Box Plot</a></li>
 </ul>
-<h3 id="_14">利用ノード一覧</h3>
+<h3 id="_14">まとめ</h3>
+<p>データ分析の初期の段階でクラスタリングを行いサンプルをグループ化することで、より直感的にデータの特徴をつかむことができました。この分析結果を参考にして、会員の利用回数の予測、退会予測 等をすることができます。</p>
+<p>また、データに不具合さえなければ、KNIMEには、既存のクラスタリングノード - K-Means があるので、短時間でクラスタリングを行うことができます。</p>
+<h3 id="appendix">Appendix / 利用ノード一覧</h3>
 <ul>
 <li><a href="https://nodepit.com/node/org.knime.base.node.io.csvreader.CSVReaderNodeFactory">IO / Read / CSV Reader</a></li>
 <li><a href="https://nodepit.com/node/org.knime.base.node.stats.dataexplorer.DataExplorerNodeFactory">Nodes / KNIME Labs / JavaScript Views (Labs) / Data Explorer</a></li>
@@ -314,7 +318,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <br>
 </div>
 
-<footer class="container-fluid wm-page-content"><p>(c) 2020 Lions Data, Ltd. All rights reserved.</p>
+<footer class="container-fluid wm-page-content"><p>(c) 2020 <a href="https://lions-data.com">Lions Data, Ltd.</a> All rights reserved.</p>
   <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 

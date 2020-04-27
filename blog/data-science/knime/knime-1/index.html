@@ -8,10 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <meta name="author" content="Lions Data, Ltd.">
-    
+    <link rel="canonical" href="https://lions-data.com/data-science/knime/knime-1/">
     <link rel="shortcut icon" href="../../../img/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>KNIME 入門編 / 前処理 - Lions Data's Blog</title>
+    <title>KNIME 入門編 / 前処理 - Lions Data / Blog</title>
     <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
     <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
     <link href="../../../css/base.css" rel="stylesheet">
@@ -36,7 +36,7 @@
               {title: "\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u5168\u4f53", url: "#_1" },
               {title: "\u9867\u5ba2\u30de\u30b9\u30bf \u524d\u51e6\u7406", url: "#_2" },
               {title: "\u58f2\u4e0a\u30c7\u30fc\u30bf \u524d\u51e6\u7406", url: "#_3" },
-              {title: "\u4f7f\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#_4" },
+              {title: "Appendx / \u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#appendx" },
           ]},
         ];
 
@@ -86,8 +86,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 
     <h2 id="knime">KNIME 入門編 / 前処理</h2>
 <ul>
-<li>作成日: 2020-03-31</li>
-<li>更新日: 2020-04-11</li>
+<li>初版作成日: 2020-03-31</li>
+<li>最終更新日: 2020-04-11</li>
 </ul>
 <p>ビッグデータでは、大量のテキストデータ、数値データを扱います。数値データには、欠損値、異常値などを含む為、そのままデータ分析を進めても期待した結果・効果を得ることができません。データ分析では、データの誤り、漏れ、不足、矛盾を事前にチェックし、データを整える「前処理」という工程が必要とされています。今回は、顧客マスタと売上データの二つのデータの前処理を行います。その結果をCSV形式ファイルに保存し、次回の探索的データ分析 <em>(可視化含む)</em> に進みます。</p>
 <h3 id="_1">ワークフロー全体</h3>
@@ -440,7 +440,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.append.row.AppendedRowsNodeFactory">Manipulation / Row / Transform / Concatenate</a></li>
 </ul>
-<h3 id="_4">使用ノード一覧</h3>
+<h3 id="appendx">Appendx / 利用ノード一覧</h3>
 <table>
 <thead>
 <tr>
@@ -566,7 +566,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
     <br>
 </div>
 
-<footer class="container-fluid wm-page-content"><p>(c) 2020 Lions Data, Ltd. All rights reserved.</p>
+<footer class="container-fluid wm-page-content"><p>(c) 2020 <a href="https://lions-data.com">Lions Data, Ltd.</a> All rights reserved.</p>
   <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
 </footer>
 
