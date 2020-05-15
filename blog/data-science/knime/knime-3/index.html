@@ -1,89 +1,802 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="author" content="Lions Data, Ltd.">
-    <link rel="canonical" href="https://lions-data.com/data-science/knime/knime-3/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>KNIME 入門編 / クラスタリング - Lions Data / Blog</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://lions-data.com/data-science/knime/knime-3/">
+      
+      
+        <meta name="author" content="Lions Data, Ltd.">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.2">
+    
+    
+      
+        <title>KNIME 入門編 / クラスタリング - Lions Data / Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.07c9fbf5.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecd4686e.min.css">
+      
+      
         
-        var pageToc = [
-          {title: "KNIME \u5165\u9580\u7de8 / \u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0", url: "#_top", children: [
-              {title: "\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u5168\u4f53", url: "#_1" },
-              {title: "\u5206\u6790\u7528\u30c7\u30fc\u30bf\u8aad\u307f\u8fbc\u307f", url: "#_2" },
-              {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u51e6\u7406", url: "#_3" },
-              {title: "\u30af\u30e9\u30b9\u30bf\u30ea\u30f3\u30b0 / \u96c6\u8a08, \u53ef\u8996\u5316", url: "#_8" },
-              {title: "\u307e\u3068\u3081", url: "#_14" },
-              {title: "Appendix / \u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#appendix" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
+        
+        <meta name="theme-color" content="#546e7a">
+      
     
-
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7CUbuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css">
+    
+      <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+    
+      <link rel="stylesheet" href="../../../css/pheasant.css">
     
     
       
     
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
-    <div class="wm-article-nav">
-      <a href="../knime-2/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../knime-2/" class="btn btn-xs btn-link">
-        KNIME 入門編 / 探索的データ分析
-      </a>
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#knime" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
     </div>
     
-  </div>
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://lions-data.com/" title="Lions Data / Blog" class="md-header-nav__button md-logo" aria-label="Lions Data / Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Lions Data / Blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              KNIME 入門編 / クラスタリング
+            
+          </span>
+        </div>
+      
+    </div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://lions-data.com/" title="Lions Data / Blog" class="md-nav__button md-logo" aria-label="Lions Data / Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    Lions Data / Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Table of contents" class="md-nav__link">
+      Table of contents
+    </a>
+  </li>
 
     
+      
+      
+      
 
-    <h2 id="knime">KNIME 入門編 / クラスタリング</h2>
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Data Science
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Data Science" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Data Science
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      KNIME
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="KNIME" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        KNIME
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="KNIME 概要" class="md-nav__link">
+      KNIME 概要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../knime-1/" title="KNIME 入門編 / 前処理" class="md-nav__link">
+      KNIME 入門編 / 前処理
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../knime-2/" title="KNIME 入門編 / 探索的データ分析" class="md-nav__link">
+      KNIME 入門編 / 探索的データ分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        KNIME 入門編 / クラスタリング
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="KNIME 入門編 / クラスタリング" class="md-nav__link md-nav__link--active">
+      KNIME 入門編 / クラスタリング
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#knime" class="md-nav__link">
+    KNIME 入門編 / クラスタリング
+  </a>
+  
+    <nav class="md-nav" aria-label="KNIME 入門編 / クラスタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ワークフロー全体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析用データ読み込み
+  </a>
+  
+    <nav class="md-nav" aria-label="分析用データ読み込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    顧客データ + 利用履歴 CSVファイル 読込み
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    クラスタリング / 処理
+  </a>
+  
+    <nav class="md-nav" aria-label="クラスタリング / 処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    準備 / データ探索
+  </a>
+  
+    <nav class="md-nav" aria-label="準備 / データ探索">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 月の利用回数の分布
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 会員期間の分布
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 退会会員数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 月額金額の分布
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 質的データの要約
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    正規化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    クラスタリング
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    クラスタリング 色指定
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    クラスタリング / 集計, 可視化
+  </a>
+  
+    <nav class="md-nav" aria-label="クラスタリング / 集計, 可視化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    テーブル結合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    集計
+  </a>
+  
+    <nav class="md-nav" aria-label="集計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    クラスター別退会者集計
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    クラスター別定期利用者集計
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    可視化
+  </a>
+  
+    <nav class="md-nav" aria-label="可視化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-parallel-coordinates-plot" class="md-nav__link">
+    1. Parallel Coordinates Plot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-scatter-plot-1" class="md-nav__link">
+    2-1. Scatter Plot (1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-scatter-plot-2" class="md-nav__link">
+    2-2. Scatter Plot (2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-conditional-box-plot" class="md-nav__link">
+    3. Conditional Box Plot
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    まとめ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix / 利用ノード一覧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../knime-4/" title="KNIME 実践編 / 解約予測" class="md-nav__link">
+      KNIME 実践編 / 解約予測
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#knime" class="md-nav__link">
+    KNIME 入門編 / クラスタリング
+  </a>
+  
+    <nav class="md-nav" aria-label="KNIME 入門編 / クラスタリング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ワークフロー全体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析用データ読み込み
+  </a>
+  
+    <nav class="md-nav" aria-label="分析用データ読み込み">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    顧客データ + 利用履歴 CSVファイル 読込み
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    クラスタリング / 処理
+  </a>
+  
+    <nav class="md-nav" aria-label="クラスタリング / 処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    準備 / データ探索
+  </a>
+  
+    <nav class="md-nav" aria-label="準備 / データ探索">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    1. 月の利用回数の分布
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    2. 会員期間の分布
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. 退会会員数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    4. 月額金額の分布
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 質的データの要約
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    正規化
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    クラスタリング
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    クラスタリング 色指定
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    クラスタリング / 集計, 可視化
+  </a>
+  
+    <nav class="md-nav" aria-label="クラスタリング / 集計, 可視化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    テーブル結合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    集計
+  </a>
+  
+    <nav class="md-nav" aria-label="集計">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    クラスター別退会者集計
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    クラスター別定期利用者集計
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    可視化
+  </a>
+  
+    <nav class="md-nav" aria-label="可視化">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-parallel-coordinates-plot" class="md-nav__link">
+    1. Parallel Coordinates Plot
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1-scatter-plot-1" class="md-nav__link">
+    2-1. Scatter Plot (1)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2-scatter-plot-2" class="md-nav__link">
+    2-2. Scatter Plot (2)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-conditional-box-plot" class="md-nav__link">
+    3. Conditional Box Plot
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    まとめ
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendix" class="md-nav__link">
+    Appendix / 利用ノード一覧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>KNIME 入門編 / クラスタリング</h1>
+                
+                
+<h2 id="knime"><span class="pheasant-header"><span class="header"><span class="title">KNIME 入門編 / クラスタリング</span></span></span></h2>
 <ul>
 <li>初版作成日: 2020-04-17</li>
 <li>最終更新日: 2020-04-24</li>
 </ul>
 <p>今回は、すでにデータ整形が終わっている分析用データ <em>(トレーニングジム会員の利用履歴)</em> を使い 会員のクラスタリング <em>(クラスター分析)</em> を行い、それぞれのクラスターの行動の傾向を確認します。クラスタリングとは、異なる性質・特徴をもつものが混在する集合から似た性質・特徴を持つグループを作ることです。基本的なデータ解析手法としてデータマイニングでも頻繁に利用されている手法です。</p>
 <p>クラスタリングの手法がいくつかありますが、今回は、非階層クラスタリングに属する <a href="https://en.wikipedia.org/wiki/K-means_clustering" target="_blank">k-means</a> を使います。 <strong>非階層クラスタリング</strong>は、予め作成するクラスター数を決定し、決めた数の階層を持たないクラスター <em>(グループ)</em> にサンプルを分割する方法です。サンプル数が極めて大きいビッグデータ分析に適しています。</p>
-<h3 id="_1">ワークフロー全体</h3>
+<h3 id="_1"><span class="pheasant-header"><span class="header"><span class="title">ワークフロー全体</span></span></span></h3>
 <p>整形後データ読み込んだ後に、クラスタリングを実行し、最後にクラスタリング結果の可視化と集計を行います。</p>
 <ol>
 <li>顧客+利用履歴データ <em>(CSV形式ファイル)</em> 読み込み</li>
@@ -93,8 +806,8 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ol>
 <p><em>Fig. 全体ワークフロー</em></p>
 <p><img alt="ワークフロー" src="../images/knime-3/workflow.png" /></p>
-<h3 id="_2">分析用データ読み込み</h3>
-<h4 id="csv">顧客データ + 利用履歴 CSVファイル 読込み</h4>
+<h3 id="_2"><span class="pheasant-header"><span class="header"><span class="title">分析用データ読み込み</span></span></span></h3>
+<h4 id="csv"><span class="pheasant-header"><span class="header"><span class="title">顧客データ + 利用履歴 CSVファイル 読込み</span></span></span></h4>
 <p>読込み対象のCSVファイルの文字コードが <code>UTF-8</code> であることを事前に確認した後、KNIMEに 顧客データ + 利用履歴 <em>(CSV)</em> を読み込み設定を行います。主に 列タイトル行の存在、区切り文字 <em>(delimiter)</em> を設定します。KNIMEにデータのインポートが完了した後に、ファイルが正しくロードされているか確認します。</p>
 <ol>
 <li>ローカルファイルにある <code>顧客データ + 利用履歴 CSVファイル</code> を指定し、<code>Has Row Header (行見出し存在)</code> のチェックを外す</li>
@@ -107,28 +820,28 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.io.csvreader.CSVReaderNodeFactory">IO / Read / CSV Reader</a></li>
 </ul>
-<h3 id="_3">クラスタリング / 処理</h3>
+<h3 id="_3"><span class="pheasant-header"><span class="header"><span class="title">クラスタリング / 処理</span></span></span></h3>
 <p><em>Fig. クラスタリング / 処理 / ワークフロー</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf-part-2.png" /></p>
-<h4 id="_4">準備 / データ探索</h4>
+<h4 id="_4"><span class="pheasant-header"><span class="header"><span class="title">準備 / データ探索</span></span></span></h4>
 <p>読み込んだデータが どのような特徴を持っているのか把握しておく必要があります。<code>Data Explorer</code> ノードを使い簡単なデータ分析　- 探索的データ分析 <em>(Exploratory Data Analysis: EDA)</em> を行います。次の情報を確認します。</p>
-<h5 id="1">1. 月の利用回数の分布</h5>
+<h5 id="1"><span class="pheasant-header"><span class="header"><span class="title">1. 月の利用回数の分布</span></span></span></h5>
 <p>利用者の月の利用回数は、3回から5回が多いことがわかります</p>
 <p><em>Fig. データ探索 / mean (利用回数 平均/月)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-1.png" /></p>
-<h5 id="2">2. 会員期間の分布</h5>
+<h5 id="2"><span class="pheasant-header"><span class="header"><span class="title">2. 会員期間の分布</span></span></span></h5>
 <p>会員期間は、1年未満の利用者が多いことがわかります。依って、一年以上の会員期間の利用者は、継続的に利用していることがわかります</p>
 <p><em>Fig. データ探索 / membership_period (会員期間)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-2.png" /></p>
-<h5 id="3">3. 退会会員数</h5>
+<h5 id="3"><span class="pheasant-header"><span class="header"><span class="title">3. 退会会員数</span></span></span></h5>
 <p>退会会員数は、継続会員数の約半数ということがわかります</p>
 <p><em>Fig. データ探索 / membership is_deleted (退会)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-3.png" /></p>
-<h5 id="4">4. 月額金額の分布</h5>
+<h5 id="4"><span class="pheasant-header"><span class="header"><span class="title">4. 月額金額の分布</span></span></span></h5>
 <p>月額金額は三種類あり <em>[6000円, 7500円, 10500円]</em> 、その中でも10,500円のコースの会員数が他のそれぞれのコースの二倍近くいることがわかります</p>
 <p><em>Fig. データ探索 / membership price (月額)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-2-4.png" /></p>
-<h5 id="5">5. 質的データの要約</h5>
+<h5 id="5"><span class="pheasant-header"><span class="header"><span class="title">5. 質的データの要約</span></span></span></h5>
 <p>データの要約 <em>(サマリー)</em> を見ていくと、このデータの概要を理解することができます。</p>
 <p><code>end_date</code> の結果は、退会した人が 2842人いて ユニークな値が 12存在します。「2842人が退会した日が12日ある」ことを意味します。その一方、<code>start_date</code> の結果は、「入会日は 215日ある」その日数は、退会日よりも多いことがわかります。その他、クラ数数、キャンペーンう数等を把握することができます。</p>
 <p><em>Fig. データ探索 / Nominal</em></p>
@@ -136,7 +849,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.stats.dataexplorer.DataExplorerNodeFactory">Nodes / KNIME Labs / JavaScript Views (Labs) / Data Explorer</a></li>
 </ul>
-<h4 id="_5">正規化</h4>
+<h4 id="_5"><span class="pheasant-header"><span class="header"><span class="title">正規化</span></span></span></h4>
 <p>クラスタリング処理を行う前に 数値データのスケールを 0から1の範囲に線形変換 <em>(Linear transformation)</em> します。</p>
 <p>正規化 設定画面で、正規化対象のカラム - <code>mean (平均 利用回数/月)</code>, <code>membership_pedriod (会員期間)</code> を選択します。</p>
 <p><em>Fig. Normalizaer 正規化 / 設定</em></p>
@@ -147,7 +860,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.normalize3.Normalizer3NodeFactory">Nodes / Manipulation / Column / Transform / Normalizer</a></li>
 </ul>
-<h4 id="_6">クラスタリング</h4>
+<h4 id="_6"><span class="pheasant-header"><span class="header"><span class="title">クラスタリング</span></span></span></h4>
 <p>トレーニングジムの会員の行動傾向を4つのクラスターに分けます。クラスタリング 設定画面の <code>Number of clusters (クラスター数)</code> の値を 「4」に設定します。また、クラスタリングに必要なカラムに <code>mean (平均利用回数/月)</code> と <code>membership_period (会員期間)</code> の二つを選択します。</p>
 <p><em>Fig. クラスタリング 設定</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-3-1.png" /></p>
@@ -157,17 +870,17 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/workflow/com.knime.hub%2FUsers%2Ftaka%2FPublic%2Fclustering(k-means)">Workflows / KNIME Hub / Users / taka / Public / k-means</a></li>
 </ul>
-<h4 id="_7">クラスタリング 色指定</h4>
+<h4 id="_7"><span class="pheasant-header"><span class="header"><span class="title">クラスタリング 色指定</span></span></span></h4>
 <p>可視化した時に 4つのクラスターに属する値を容易に判別できるように、それぞれのクラスターの色を指定します。この処理に依り、生成されたチャートにプロットされた値がどのクラスターに属しているかわかります。</p>
 <p><em>Fig. クラスタリング 色指定</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-2/wf2-node-4-1.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.viz.property.color.ColorManager2NodeFactory">Nodes / Views / Property / Color Manager</a></li>
 </ul>
-<h3 id="_8">クラスタリング / 集計, 可視化</h3>
+<h3 id="_8"><span class="pheasant-header"><span class="header"><span class="title">クラスタリング / 集計, 可視化</span></span></span></h3>
 <p><em>Fig. クラスタリング / 集計, 可視化</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf-part-3.png" /></p>
-<h4 id="_9">テーブル結合</h4>
+<h4 id="_9"><span class="pheasant-header"><span class="header"><span class="title">テーブル結合</span></span></span></h4>
 <p>正規化処理で 実際のデータと異なる値を持つカラム (<code>mean (平均利用回数/月)</code>, <code>membership_period (会員期間)</code>) が存在しているので、正規化前後のそれぞれの値を使えるように、正規化前の元のテーブルと正規化後のテーブルを結合します。</p>
 <ul>
 <li><code>join mode</code> に <code>inner join (内部結合)</code> を選択する</li>
@@ -185,9 +898,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <p><em>Fig. テーブル結合 / 設定 (2)</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-1-2.png" /></p>
-<h4 id="_10">集計</h4>
+<h4 id="_10"><span class="pheasant-header"><span class="header"><span class="title">集計</span></span></span></h4>
 <p>集計の目的は、クラスター別 会員の行動の特徴を把握することです。このセクションでは、「クラスター別退会者集計」と「クラスター別定期利用者集計」を行います。</p>
-<h5 id="_11">クラスター別退会者集計</h5>
+<h5 id="_11"><span class="pheasant-header"><span class="header"><span class="title">クラスター別退会者集計</span></span></span></h5>
 <ul>
 <li>グループ化対象カラムに、<code>Cluster (クラスター)</code>、<code>is_deleted (途中退会者)</code> を指定し、<strong>クラスター別退会者</strong> を集計する</li>
 <li>集計対象カラムは、<code>customer_id (会員ID)</code>とし、集計方法は <code>Count</code> を指定する</li>
@@ -203,7 +916,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-2.png" /></p>
 <p><em>Fig. 集計 / クラスター別退会者集計 / 結果テーブル</em></p>
 <p><img alt="" src="../images/knime-3/wf-part-3/wf3-node-2-3.png" /></p>
-<h5 id="_12">クラスター別定期利用者集計</h5>
+<h5 id="_12"><span class="pheasant-header"><span class="header"><span class="title">クラスター別定期利用者集計</span></span></span></h5>
 <ul>
 <li>グループ化対象カラムに、<code>Cluster (クラスター)</code>、<code>routine_flg (定期利用フラグ)</code> を指定し、<strong>クラスター別定期利用者</strong> を集計する</li>
 <li>集計対象カラムは、<code>customer_id (会員ID)</code>とし、集計方法は <code>Count</code> を指定する</li>
@@ -222,14 +935,14 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.groupby.GroupByNodeFactory">Nodes / Manipulation / RowRow / Transform / GroupBy</a></li>
 </ul>
-<h4 id="_13">可視化</h4>
+<h4 id="_13"><span class="pheasant-header"><span class="header"><span class="title">可視化</span></span></span></h4>
 <p>データの中にあるカテゴリー同士の類似性や関係を理解するため、チャートをいくつか作成しデータの理解を深めます。次の三種類のチャートを作成します。</p>
 <ol>
 <li>Parallel Coordinates Plot <em>(平行座標)</em></li>
 <li>Scatter Plot / 2D/3D Scatterplot <em>(散布図)</em></li>
 <li>Conditional Box Plot <em>(箱ひげ図)</em></li>
 </ol>
-<h5 id="1-parallel-coordinates-plot">1. Parallel Coordinates Plot</h5>
+<h5 id="1-parallel-coordinates-plot"><span class="pheasant-header"><span class="header"><span class="title">1. Parallel Coordinates Plot</span></span></span></h5>
 <ul>
 <li>Parallel Coordinates Plot <em>(平行座標)</em> を作成するのに必要な列、<code>mean (平均利用回数/月)</code>、<code>membership_period (会員期間)</code>、<code>Cluster (クラスター)</code> を指定する</li>
 <li>各列の関係 - <code>mean (平均利用回数/月)</code> =&gt; <code>membership_period (会員期間)</code> =&gt; <code>Cluster (クラスター)</code> を確認する</li>
@@ -241,7 +954,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Parallel%20Coordinates%20Plot">Nodes / Views / JavaScript / Parallel Coordinates Plot</a></li>
 </ul>
-<h5 id="2-1-scatter-plot-1">2-1. Scatter Plot (1)</h5>
+<h5 id="2-1-scatter-plot-1"><span class="pheasant-header"><span class="header"><span class="title">2-1. Scatter Plot (1)</span></span></span></h5>
 <ul>
 <li>X軸に <code>membership_period (会員期間)</code>、Y軸に <code>mean (平均利用回数/月)</code> を指定する</li>
 <li>各クラスターが色分けされプロットされていることがわかり、綺麗に4つのクラスターができていることを確認し、各クラスターの <code>membership_period (会員期間)</code>と<code>mean (平均利用回数/月)</code>の関係も確認する</li>
@@ -253,7 +966,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.js.base.node.viz.plotter.scatterSelectionAppender.ScatterPlotNodeFactory">Nodes / Views / JavaScript / Scatter Plot</a></li>
 </ul>
-<h5 id="2-2-scatter-plot-2">2-2. Scatter Plot (2)</h5>
+<h5 id="2-2-scatter-plot-2"><span class="pheasant-header"><span class="header"><span class="title">2-2. Scatter Plot (2)</span></span></span></h5>
 <ul>
 <li>「2-1. Scatter Plot (1)」と同じ</li>
 </ul>
@@ -264,9 +977,9 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.erlwood.knime.nodes.graph.NGraphNodeFactory">Nodes / Community Nodes / Erlwood Nodes / Viewers</a></li>
 </ul>
-<h5 id="3-conditional-box-plot">3. Conditional Box Plot</h5>
+<h5 id="3-conditional-box-plot"><span class="pheasant-header"><span class="header"><span class="title">3. Conditional Box Plot</span></span></span></h5>
 <ul>
-<li>Box Plot <em>(箱ひげ図)</em> を作成し、各クラスターの <code>membership_period (会員期間)</code> と <code>mean (平均利用回数/月)</code> の<strong>データのばらつき</strong>を確認する</li>
+<li>Box Plot <em>(箱ひげ図)</em> を作成し、各クラスターの <code>membership_period (会員期間)</code> と <code>mean (平均利用回数/月)</code> の**データのばらつき**を確認する</li>
 <li><code>Category column</code> に <code>Cluster (クラスター)</code> を指定、対象カラムに <code>membership_period (会員期間)</code> と <code>mean (平均利用回数/月)</code> を指定する</li>
 </ul>
 <p><em>Fig. 可視化 / Conditional Box Plot / 設定</em></p>
@@ -278,10 +991,10 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Conditional%20Box%20Plot">Nodes / Views / JavaScript / Conditional Box Plot</a></li>
 </ul>
-<h3 id="_14">まとめ</h3>
+<h3 id="_14"><span class="pheasant-header"><span class="header"><span class="title">まとめ</span></span></span></h3>
 <p>データ分析の初期の段階でクラスタリングを行いサンプルをグループ化することで、より直感的にデータの特徴をつかむことができました。この分析結果を参考にして、会員の利用回数の予測、退会予測 等をすることができます。</p>
 <p>また、データに不具合さえなければ、KNIMEには、既存のクラスタリングノード - K-Means があるので、短時間でクラスタリングを行うことができます。</p>
-<h3 id="appendix">Appendix / 利用ノード一覧</h3>
+<h3 id="appendix"><span class="pheasant-header"><span class="header"><span class="title">Appendix / 利用ノード一覧</span></span></span></h3>
 <ul>
 <li><a href="https://nodepit.com/node/org.knime.base.node.io.csvreader.CSVReaderNodeFactory">IO / Read / CSV Reader</a></li>
 <li><a href="https://nodepit.com/node/org.knime.base.node.stats.dataexplorer.DataExplorerNodeFactory">Nodes / KNIME Labs / JavaScript Views (Labs) / Data Explorer</a></li>
@@ -294,33 +1007,140 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <li><a href="https://nodepit.com/node/org.erlwood.knime.nodes.graph.NGraphNodeFactory">Nodes / Community Nodes / Erlwood Nodes / Viewers</a></li>
 <li><a href="https://nodepit.com/node/org.knime.dynamic.js.v30.DynamicJSNodeFactory%23Conditional%20Box%20Plot">Nodes / Views / JavaScript / Conditional Box Plot</a></li>
 </ul>
+<style>
+.md-typeset h1 {
+    margin: 0 0 2rem;
+    color: var(--md-default-fg-color--light);
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+.md-typeset h2 {
+    margin: 2rem 0 .8rem;
+    font-weight: 450;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+.md-typeset h3 {
+    margin: 1.6rem 0 .8rem;
+    font-weight: 450;
+    font-size: 1.0rem;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+}
+.md-typeset h4 {
+    margin: .8rem 0;
+    f====ont-weight: 450;
+    font-size: .8rem;
+    letter-spacing: -0.01em;
+}
+.md-typeset h5, .md-typeset h6 {
+    margin: .8rem 0;
+    color: black;
+    font-weight: 450;
+    font-size: .75rem;
+    letter-spacing: -0.01em;
+}
+.md-nav {
+    font-size: .6rem;
+    line-height: 1.3;
+}
+.md-typeset {
+    font-size: .7rem;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+</style>
+                
+              
+              
+                
 
-  <br>
-    
 
-    
-    
+              
+            </article>
+          </div>
+        </div>
+      </main>
       
-    
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav">
-      <a href="../knime-2/" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../knime-2/" class="btn btn-xs btn-link">
-        KNIME 入門編 / 探索的データ分析
-      </a>
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../knime-2/" title="KNIME 入門編 / 探索的データ分析" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                KNIME 入門編 / 探索的データ分析
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../knime-4/" title="KNIME 実践編 / 解約予測" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                KNIME 実践編 / 解約予測
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            (c) 2020 <a href="https://lions-data.com">Lions Data, Ltd.</a> All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
     </div>
     
-  </div>
-
-    <br>
-</div>
-
-<footer class="container-fluid wm-page-content"><p>(c) 2020 <a href="https://lions-data.com">Lions Data, Ltd.</a> All rights reserved.</p>
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+      <script src="../../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/pheasant.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
 </html>

@@ -1,113 +1,836 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="author" content="Lions Data, Ltd.">
-    <link rel="canonical" href="https://lions-data.com/data-science/knime/knime-1/">
-    <link rel="shortcut icon" href="../../../img/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <title>KNIME 入門編 / 前処理 - Lions Data / Blog</title>
-    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
-    <link href="../../../css/base.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/highlight.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 
-    <script src="../../../js/jquery-3.2.1.min.js"></script>
-    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
-    <script src="../../../js/highlight.pack.js"></script>
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
     
-    <base target="_top">
-    <script>
-      var base_url = '../../..';
-      var is_top_frame = false;
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <link rel="canonical" href="https://lions-data.com/data-science/knime/knime-1/">
+      
+      
+        <meta name="author" content="Lions Data, Ltd.">
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.2">
+    
+    
+      
+        <title>KNIME 入門編 / 前処理 - Lions Data / Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.07c9fbf5.min.css">
+      
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ecd4686e.min.css">
+      
+      
         
-        var pageToc = [
-          {title: "KNIME \u5165\u9580\u7de8 / \u524d\u51e6\u7406", url: "#_top", children: [
-              {title: "\u30ef\u30fc\u30af\u30d5\u30ed\u30fc\u5168\u4f53", url: "#_1" },
-              {title: "\u9867\u5ba2\u30de\u30b9\u30bf \u524d\u51e6\u7406", url: "#_2" },
-              {title: "\u58f2\u4e0a\u30c7\u30fc\u30bf \u524d\u51e6\u7406", url: "#_3" },
-              {title: "Appendx / \u5229\u7528\u30ce\u30fc\u30c9\u4e00\u89a7", url: "#appendx" },
-          ]},
-        ];
-
-    </script>
-    <script src="../../../js/base.js"></script> 
-</head>
-
-<body>
-<script>
-if (is_top_frame) { $('body').addClass('wm-top-page'); }
-</script>
-
-
-
-<div class="container-fluid wm-page-content">
-  <a name="_top"></a>
+        
+        <meta name="theme-color" content="#546e7a">
+      
     
-
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,400i,700%7CUbuntu+Mono&display=fallback">
+        <style>body,input{font-family:"Ubuntu",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Ubuntu Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/all.css">
+    
+      <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.8.1/css/v4-shims.css">
+    
+      <link rel="stylesheet" href="../../../css/pheasant.css">
     
     
       
     
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
-    <div class="wm-article-nav pull-right">
-      <a href="../knime-2/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../knime-2/" class="btn btn-xs btn-link">
-        KNIME 入門編 / 探索的データ分析
-      </a>
+  </head>
+  
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#knime" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
     </div>
     
-    <div class="wm-article-nav">
-      <a href="../" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../" class="btn btn-xs btn-link">
-        KNIME 概要
-      </a>
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://lions-data.com/" title="Lions Data / Blog" class="md-header-nav__button md-logo" aria-label="Lions Data / Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Lions Data / Blog
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              KNIME 入門編 / 前処理
+            
+          </span>
+        </div>
+      
     </div>
     
-  </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://lions-data.com/" title="Lions Data / Blog" class="md-nav__button md-logo" aria-label="Lions Data / Blog">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,8A3,3 0 0,0 15,5A3,3 0 0,0 12,2A3,3 0 0,0 9,5A3,3 0 0,0 12,8M12,11.54C9.64,9.35 6.5,8 3,8V19C6.5,19 9.64,20.35 12,22.54C14.36,20.35 17.5,19 21,19V8C17.5,8 14.36,9.35 12,11.54Z" /></svg>
+
+    </a>
+    Lions Data / Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../.." title="Table of contents" class="md-nav__link">
+      Table of contents
+    </a>
+  </li>
 
     
+      
+      
+      
 
-    <h2 id="knime">KNIME 入門編 / 前処理</h2>
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      Data Science
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="Data Science" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        Data Science
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-1" type="checkbox" id="nav-2-1" checked>
+    
+    <label class="md-nav__link" for="nav-2-1">
+      KNIME
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+      </span>
+    </label>
+    <nav class="md-nav" aria-label="KNIME" data-md-level="2">
+      <label class="md-nav__title" for="nav-2-1">
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        </span>
+        KNIME
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" title="KNIME 概要" class="md-nav__link">
+      KNIME 概要
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        KNIME 入門編 / 前処理
+        <span class="md-nav__icon md-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+        </span>
+      </label>
+    
+    <a href="./" title="KNIME 入門編 / 前処理" class="md-nav__link md-nav__link--active">
+      KNIME 入門編 / 前処理
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#knime" class="md-nav__link">
+    KNIME 入門編 / 前処理
+  </a>
+  
+    <nav class="md-nav" aria-label="KNIME 入門編 / 前処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ワークフロー全体
+  </a>
+  
+    <nav class="md-nav" aria-label="ワークフロー全体">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta_-meta_" class="md-nav__link">
+    META_顧客マスタ と META_売上データ の結合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    CSV形式ファイルの出力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    顧客マスタ 前処理
+  </a>
+  
+    <nav class="md-nav" aria-label="顧客マスタ 前処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-excel" class="md-nav__link">
+    1. 顧客マスター Excelファイル 読込み
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    2-1. 顧客マスター 前処理 / 氏名カラム / スペース除去
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    2-2. 顧客マスター 前処理 / 登録日カラム / 日付フォーマット判定 + レコード分割
+  </a>
+  
+    <nav class="md-nav" aria-label="2-2. 顧客マスター 前処理 / 登録日カラム / 日付フォーマット判定 + レコード分割">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtered-out" class="md-nav__link">
+    除外レコード (Filtered Out)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    2-3. 顧客マスター 前処理 / 登録日カラム / 文字列置換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    2-4. 顧客マスター 前処理 / 登録日カラム / 文字列から数値へ変換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5-java-unix-timestamp" class="md-nav__link">
+    2-5. 顧客マスター 前処理 / 登録日カラム / Javaコード - シリアル値からUnix Timestampへ変換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6-unix-timestamp" class="md-nav__link">
+    2-6. 顧客マスター 前処理 / 登録日カラム / Unix Timestampから日付型へ変換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-7" class="md-nav__link">
+    2-7. 顧客マスター 前処理 / レコード結合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. データ処理後 ファイル出力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    売上データ 前処理
+  </a>
+  
+    <nav class="md-nav" aria-label="売上データ 前処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-csv" class="md-nav__link">
+    1. 売上データ CSVファイル 読込み
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1_1" class="md-nav__link">
+    2-1. 売上データ 前処理 / 購買日 / カラム追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2_1" class="md-nav__link">
+    2-2. 売上データ 前処理 / 購買日 / データ型変更
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3_1" class="md-nav__link">
+    2-3. 売上データ 前処理 / 購買年月 / カラム作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4_1" class="md-nav__link">
+    2-4. 売上データ 前処理 / 購買年月 / カラム名変更
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    2-5. 売上データ 前処理 / 商品名 / スペース除去等 (文字列処理)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6" class="md-nav__link">
+    2-6. 売上データ 前処理 / 商品価格 / 欠損値レコード抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-7_1" class="md-nav__link">
+    2-7. 売上データ 前処理 / 商品別 商品価格 平均算出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-8-1" class="md-nav__link">
+    2-8. 売上データ 前処理 / 商品別 商品価格 置換-1 (テーブル連結)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-9-2" class="md-nav__link">
+    2-9. 売上データ 前処理 / 商品別 商品価格 置換-2 (不要カラム削除)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-10-2" class="md-nav__link">
+    2-10. 売上データ 前処理 / 商品別 商品価格 置換-2 (カラム名変更)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-11" class="md-nav__link">
+    2-11. 売上データ 前処理 / 商品価格 / 欠損値置換
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendx" class="md-nav__link">
+    Appendx / 利用ノード一覧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../knime-2/" title="KNIME 入門編 / 探索的データ分析" class="md-nav__link">
+      KNIME 入門編 / 探索的データ分析
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../knime-3/" title="KNIME 入門編 / クラスタリング" class="md-nav__link">
+      KNIME 入門編 / クラスタリング
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../knime-4/" title="KNIME 実践編 / 解約予測" class="md-nav__link">
+      KNIME 実践編 / 解約予測
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+      </span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#knime" class="md-nav__link">
+    KNIME 入門編 / 前処理
+  </a>
+  
+    <nav class="md-nav" aria-label="KNIME 入門編 / 前処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    ワークフロー全体
+  </a>
+  
+    <nav class="md-nav" aria-label="ワークフロー全体">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#meta_-meta_" class="md-nav__link">
+    META_顧客マスタ と META_売上データ の結合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#csv" class="md-nav__link">
+    CSV形式ファイルの出力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    顧客マスタ 前処理
+  </a>
+  
+    <nav class="md-nav" aria-label="顧客マスタ 前処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-excel" class="md-nav__link">
+    1. 顧客マスター Excelファイル 読込み
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1" class="md-nav__link">
+    2-1. 顧客マスター 前処理 / 氏名カラム / スペース除去
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2" class="md-nav__link">
+    2-2. 顧客マスター 前処理 / 登録日カラム / 日付フォーマット判定 + レコード分割
+  </a>
+  
+    <nav class="md-nav" aria-label="2-2. 顧客マスター 前処理 / 登録日カラム / 日付フォーマット判定 + レコード分割">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#filtered-out" class="md-nav__link">
+    除外レコード (Filtered Out)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3" class="md-nav__link">
+    2-3. 顧客マスター 前処理 / 登録日カラム / 文字列置換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4" class="md-nav__link">
+    2-4. 顧客マスター 前処理 / 登録日カラム / 文字列から数値へ変換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5-java-unix-timestamp" class="md-nav__link">
+    2-5. 顧客マスター 前処理 / 登録日カラム / Javaコード - シリアル値からUnix Timestampへ変換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6-unix-timestamp" class="md-nav__link">
+    2-6. 顧客マスター 前処理 / 登録日カラム / Unix Timestampから日付型へ変換
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-7" class="md-nav__link">
+    2-7. 顧客マスター 前処理 / レコード結合
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    3. データ処理後 ファイル出力
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    売上データ 前処理
+  </a>
+  
+    <nav class="md-nav" aria-label="売上データ 前処理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-csv" class="md-nav__link">
+    1. 売上データ CSVファイル 読込み
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-1_1" class="md-nav__link">
+    2-1. 売上データ 前処理 / 購買日 / カラム追加
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-2_1" class="md-nav__link">
+    2-2. 売上データ 前処理 / 購買日 / データ型変更
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-3_1" class="md-nav__link">
+    2-3. 売上データ 前処理 / 購買年月 / カラム作成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-4_1" class="md-nav__link">
+    2-4. 売上データ 前処理 / 購買年月 / カラム名変更
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-5" class="md-nav__link">
+    2-5. 売上データ 前処理 / 商品名 / スペース除去等 (文字列処理)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-6" class="md-nav__link">
+    2-6. 売上データ 前処理 / 商品価格 / 欠損値レコード抽出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-7_1" class="md-nav__link">
+    2-7. 売上データ 前処理 / 商品別 商品価格 平均算出
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-8-1" class="md-nav__link">
+    2-8. 売上データ 前処理 / 商品別 商品価格 置換-1 (テーブル連結)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-9-2" class="md-nav__link">
+    2-9. 売上データ 前処理 / 商品別 商品価格 置換-2 (不要カラム削除)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-10-2" class="md-nav__link">
+    2-10. 売上データ 前処理 / 商品別 商品価格 置換-2 (カラム名変更)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-11" class="md-nav__link">
+    2-11. 売上データ 前処理 / 商品価格 / 欠損値置換
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#appendx" class="md-nav__link">
+    Appendx / 利用ノード一覧
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                  
+                
+                
+                  <h1>KNIME 入門編 / 前処理</h1>
+                
+                
+<h2 id="knime"><span class="pheasant-header"><span class="header"><span class="title">KNIME 入門編 / 前処理</span></span></span></h2>
 <ul>
 <li>初版作成日: 2020-03-31</li>
 <li>最終更新日: 2020-04-11</li>
 </ul>
 <p>ビッグデータでは、大量のテキストデータ、数値データを扱います。数値データには、欠損値、異常値などを含む為、そのままデータ分析を進めても期待した結果・効果を得ることができません。データ分析では、データの誤り、漏れ、不足、矛盾を事前にチェックし、データを整える「前処理」という工程が必要とされています。今回は、顧客マスタと売上データの二つのデータの前処理を行います。その結果をCSV形式ファイルに保存し、次回の探索的データ分析 <em>(可視化含む)</em> に進みます。</p>
-<h3 id="_1">ワークフロー全体</h3>
+<h3 id="_1"><span class="pheasant-header"><span class="header"><span class="title">ワークフロー全体</span></span></span></h3>
 <ol>
 <li>顧客マスタ データ処理</li>
 <li>売上データ データ処理</li>
 <li>顧客マスタ, 売上データ結合</li>
 <li>CSV形式ファイル出力</li>
 </ol>
-<p>ワークフローは下の図に示した通りです。<strong>顧客マスタ</strong> と <strong>売上データ</strong> の前処理ワークフローを <code>META_顧客マスタ W/F</code> と <code>META_売上データ W/F</code> にそれぞれまとめ、その後、<strong>前処理後の二つのテーブルを結合</strong>します。最終的に、結合したレコードを<strong>CSV形式ファイルとして出力</strong>します。</p>
+<p>ワークフローは下の図に示した通りです。<strong>顧客マスタ</strong> と <strong>売上データ</strong> の前処理ワークフローを <code>META_顧客マスタ W/F</code> と <code>META_売上データ W/F</code> にそれぞれまとめ、その後、**前処理後の二つのテーブルを結合**します。最終的に、結合したレコードを**CSV形式ファイルとして出力**します。</p>
 <p><em>Fig. 全体ワークフロー</em></p>
 <p><img alt="ワークフロー" src="../images/knime-1/parent_wf/workflow.png" /></p>
-<h4 id="meta_-meta_"><code>META_顧客マスタ</code> と <code>META_売上データ</code> の結合</h4>
+<h4 id="meta_-meta_"><span class="pheasant-header"><span class="header"><span class="title"><code>META_顧客マスタ</code> と <code>META_売上データ</code> の結合</span></span></span></h4>
 <p><code>META_顧客マスタ W/F</code> と <code>META_売上データ W/F</code> の出力 <em>(レコード)</em> を結合します。結合するカラムは、<code>顧客名</code> です。</p>
 <p><em>Fig. テーブル結合</em></p>
 <p><img alt="ワークフロー" src="../images/knime-1/parent_wf/window_1.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.joiner.Joiner2NodeFactory">Manipulation / Column / Split &amp; Combine / Joiner</a></li>
 </ul>
-<h4 id="csv">CSV形式ファイルの出力</h4>
+<h4 id="csv"><span class="pheasant-header"><span class="header"><span class="title">CSV形式ファイルの出力</span></span></span></h4>
 <p>最終的に得られたレコードをCSV形式ファイルとして出力します。</p>
 <ol>
 <li>出力先とファイル名を指定する</li>
@@ -118,7 +841,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.io.csvwriter.CSVWriterNodeFactory">IO / Write / CSV Writer</a></li>
 </ul>
-<h3 id="_2">顧客マスタ 前処理</h3>
+<h3 id="_2"><span class="pheasant-header"><span class="header"><span class="title">顧客マスタ 前処理</span></span></span></h3>
 <p>処理概要:</p>
 <ul>
 <li>データ読込み:<ul>
@@ -142,7 +865,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <p><em>Fig. 顧客マスタ.前処理ワークフロー</em></p>
 <p><img alt="顧客マスタ.前処理ワークフロー" src="../images/knime-1/customer_master_wf/workflow.png" /></p>
-<h4 id="1-excel">1. 顧客マスター Excelファイル 読込み</h4>
+<h4 id="1-excel"><span class="pheasant-header"><span class="header"><span class="title">1. 顧客マスター Excelファイル 読込み</span></span></span></h4>
 <p>KNIMEに 顧客マスターファイル <em>(Excel)</em> を読み込み、レコードを確認します。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_1_1.png" /></p>
 <ol>
@@ -154,7 +877,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.ext.poi2.node.read4.XLSReaderNodeFactory">IO / Read / Excel Reader</a></p>
 </li>
 </ol>
-<h4 id="2-1">2-1. 顧客マスター 前処理 / 氏名カラム / スペース除去</h4>
+<h4 id="2-1"><span class="pheasant-header"><span class="header"><span class="title">2-1. 顧客マスター 前処理 / 氏名カラム / スペース除去</span></span></span></h4>
 <p>顧客マスター.登録日カラムのフォーマットを統一する為、不要なスペース <em>(Whitespace)</em> を除去します。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_1.png" /></p>
 <ol>
@@ -166,7 +889,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.stringmanipulation.StringManipulationNodeFactory">Manipulation / Column / Convert &amp; Replace / String Manipulation</a></p>
 </li>
 </ol>
-<h4 id="2-2">2-2. 顧客マスター 前処理 / 登録日カラム / 日付フォーマット判定 + レコード分割</h4>
+<h4 id="2-2"><span class="pheasant-header"><span class="header"><span class="title">2-2. 顧客マスター 前処理 / 登録日カラム / 日付フォーマット判定 + レコード分割</span></span></span></h4>
 <p><code>登録日</code> カラムの値が 期待する日付フォーマットと それ以外に分類します。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_2_1.png" /></p>
 <ol>
@@ -178,39 +901,40 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.filter.row.RowFilter2PortNodeFactory">Manipulation / Row / Filter / Row Splitter</a></p>
 </li>
 </ol>
-<h5 id="filtered-out">除外レコード (Filtered Out)</h5>
+<h5 id="filtered-out"><span class="pheasant-header"><span class="header"><span class="title">除外レコード (Filtered Out)</span></span></span></h5>
 <p>ノードアイコン を選択し、処理メニューの中の <strong>Filtered Out</strong> を実行することで、除外レコード <em>(期待する日付フォーマット以外)</em> のレコードが表示されます。</p>
 <p><em>Fig. 処理メニュー</em></p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_2_2.png" /></p>
 <p><em>Fig. 除外レコード表</em></p>
 <p><code>登録日</code> カラムの値が <code>reserved-*x1F</code> となっていて 日付フォーマットでないことが確認できます。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_2_3.png" /></p>
-<h4 id="2-3">2-3. 顧客マスター 前処理 / 登録日カラム / 文字列置換</h4>
+<h4 id="2-3"><span class="pheasant-header"><span class="header"><span class="title">2-3. 顧客マスター 前処理 / 登録日カラム / 文字列置換</span></span></span></h4>
 <p>「2-1. 顧客マスター 前処理 / 氏名カラム / スペース除去」と同様に <code>String Manipulation</code> ノードを使って、文字列置換を行う - 値から 文字列 <code>reserved-</code> と <code>x1F</code> を除去します。</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">replace</span><span class="p">(</span><span class="n">replace</span><span class="p">(</span><span class="n">$登録日$</span><span class="p">,</span> <span class="s">&quot;reserved-&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">),</span> <span class="s">&quot;x1F&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+<div class="pheasant-fenced-code"><div class="cached"><div class="cell jupyter input"><div class="code"><pre><code class="java">replace(replace($登録日$, &#34;reserved-&#34;, &#34;&#34;), &#34;x1F&#34;, &#34;&#34;)</code></pre></div>
+<div class="report"><p><span class="count">[1]</span>
+<span class="start"></span> (<span class="time"></span>)
+<span class="right"><span class="kernel"></span> (<span class="total"></span>)</span></p></div></div></div></div>
 
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.stringmanipulation.StringManipulationNodeFactory">Manipulation / Column / Convert &amp; Replace / String Manipulation</a></li>
 </ul>
-<h4 id="2-4">2-4. 顧客マスター 前処理 / 登録日カラム / 文字列から数値へ変換</h4>
+<h4 id="2-4"><span class="pheasant-header"><span class="header"><span class="title">2-4. 顧客マスター 前処理 / 登録日カラム / 文字列から数値へ変換</span></span></span></h4>
 <p>前のノード - 「2-3. 顧客マスター 前処理 / 登録日カラム / 文字列置換」で <code>登録日</code> から不要な文字列を除去し、シリアル値 <em>(文字列)</em> に整形したので、それを数値に変換すます。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_4.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.colconvert.stringtonumber2.StringToNumber2NodeFactory">Manipulation / Column / Convert &amp; Replace / String To Number</a></li>
 </ul>
-<h4 id="2-5-java-unix-timestamp">2-5. 顧客マスター 前処理 / 登録日カラム / Javaコード - シリアル値からUnix Timestampへ変換</h4>
+<h4 id="2-5-java-unix-timestamp"><span class="pheasant-header"><span class="header"><span class="title">2-5. 顧客マスター 前処理 / 登録日カラム / Javaコード - シリアル値からUnix Timestampへ変換</span></span></span></h4>
 <p>前のノード - 「2-4. 顧客マスター 前処理 / 登録日カラム / 文字列から数値へ変換」で <code>登録日</code> のシリアル値を得ることができたので、さらにその値を Unix Timestampに変換します。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_5.png" /></p>
 <ol>
 <li>シリアル値からUnix Timestampに変換するJavaコードを記述する</li>
 </ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="c1">// Enter your code here:</span>
-<span class="n">out_RegisterdAt</span> <span class="o">=</span> <span class="p">(</span><span class="n">c_RegisterdAt</span> <span class="o">-</span> <span class="mi">25569</span><span class="p">)</span> <span class="o">*</span> <span class="mi">86400</span><span class="p">;</span>
-</code></pre></div>
-</td></tr></table>
+<div class="pheasant-fenced-code"><div class="cached"><div class="cell jupyter input"><div class="code"><pre><code class="java">// Enter your code here:
+out_RegisterdAt = (c_RegisterdAt - 25569) * 86400;</code></pre></div>
+<div class="report"><p><span class="count">[2]</span>
+<span class="start"></span> (<span class="time"></span>)
+<span class="right"><span class="kernel"></span> (<span class="total"></span>)</span></p></div></div></div></div>
 
 <ol>
 <li>
@@ -220,7 +944,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.jsnippet.JavaSnippetNodeFactory">Scripting / Java / Java Snipet</a></p>
 </li>
 </ol>
-<h4 id="2-6-unix-timestamp">2-6. 顧客マスター 前処理 / 登録日カラム / Unix Timestampから日付型へ変換</h4>
+<h4 id="2-6-unix-timestamp"><span class="pheasant-header"><span class="header"><span class="title">2-6. 顧客マスター 前処理 / 登録日カラム / Unix Timestampから日付型へ変換</span></span></span></h4>
 <p>前のノード - 「2-5. 顧客マスター 前処理 / 登録日カラム / Javaコード - シリアル値からUnix Timestampへ変換」で <code>登録日</code> の Unix Timestampの値を得ることができたので、日付型に変換します。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_6.png" /></p>
 <ol>
@@ -232,20 +956,20 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.time.node.convert.timestamptodatetime.TimestampToDateTimeNodeFactory">Other / Data Types / Time Series / Transform / UNIX Timestamp to Date&amp;Time</a></p>
 </li>
 </ol>
-<h4 id="2-7">2-7. 顧客マスター 前処理 / レコード結合</h4>
+<h4 id="2-7"><span class="pheasant-header"><span class="header"><span class="title">2-7. 顧客マスター 前処理 / レコード結合</span></span></span></h4>
 <p><code>登録日</code> カラムの不正な値を日付型に修正したレコードと、最初から日付型のレコードを結合し、データ分析用のレコードセットを作成する。処理後のレコードは、<code>Concatenated table</code> を実行することで確認することができます。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_7_1.png" /></p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_7_2.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.append.row.AppendedRowsNodeFactory">Manipulation / Row / Transform / Concatenate</a></li>
 </ul>
-<h4 id="3">3. データ処理後 ファイル出力</h4>
+<h4 id="3"><span class="pheasant-header"><span class="header"><span class="title">3. データ処理後 ファイル出力</span></span></span></h4>
 <p>前処理を完了したレコードをCSV形式で保存しておくことで、再利用することができる。ファイルの保存先を指定し、既に同名称のファイルが存在する時は、上書きするように <code>If file exists...: Overwrite(上書き)</code> を指定します。</p>
 <p><img alt="" src="../images/knime-1/customer_master_wf/window_2_8.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.io.csvwriter.CSVWriterNodeFactory">IO / Write / CSV Writer</a></li>
 </ul>
-<h3 id="_3">売上データ 前処理</h3>
+<h3 id="_3"><span class="pheasant-header"><span class="header"><span class="title">売上データ 前処理</span></span></span></h3>
 <p>処理概要:</p>
 <ul>
 <li>データ読込み:<ul>
@@ -274,7 +998,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </ul>
 <p><em>Fig. 売上データ.前処理wワークフロー</em></p>
 <p><img alt="売上データ.前処理ワークフロー" src="../images/knime-1/sales_data_wf/workflow.png" /></p>
-<h4 id="1-csv">1. 売上データ CSVファイル 読込み</h4>
+<h4 id="1-csv"><span class="pheasant-header"><span class="header"><span class="title">1. 売上データ CSVファイル 読込み</span></span></span></h4>
 <p>KNIMEに 売上データファイル <em>(CSV)</em> を読み込み、レコードを確認します。</p>
 <ol>
 <li>ローカルファイル上にある <code>売上データ CSVファイル</code> を指定する</li>
@@ -286,7 +1010,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </li>
 <li>参考: <a href="#1-顧客マスター-excelファイル-読込み">顧客マスタ 前処理 / 1. 顧客マスター Excelファイル 読込み</a></li>
 </ol>
-<h4 id="2-1_1">2-1. 売上データ 前処理 / 購買日 / カラム追加</h4>
+<h4 id="2-1_1"><span class="pheasant-header"><span class="header"><span class="title">2-1. 売上データ 前処理 / 購買日 / カラム追加</span></span></span></h4>
 <p>KNIMEでは、先頭カラムを<code>RowID</code>にする為、RowIDを元に <code>購買日</code> カラムを追加します。処理結果に <code>購買日</code>カラムが追加されていることを確認します。</p>
 <p><em>Fig. RowIDを元にカラム追加</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_1_1.png" /></p>
@@ -301,7 +1025,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.rowkey2.RowKeyNodeFactory2">Manipulation / Row / Other / RowID</a></p>
 </li>
 </ol>
-<h4 id="2-2_1">2-2. 売上データ 前処理 / 購買日 / データ型変更</h4>
+<h4 id="2-2_1"><span class="pheasant-header"><span class="header"><span class="title">2-2. 売上データ 前処理 / 購買日 / データ型変更</span></span></span></h4>
 <p><code>購買日</code>カラムのデータ型を文字列から日付に変更します</p>
 <p><em>Fig. 文字列から日付に変換</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_2_1.png" /></p>
@@ -314,7 +1038,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.time.node.convert.stringtodatetime.StringToDateTimeNodeFactory">Other Data Types / Time Series /Transform / String to Date&amp;Time</a></p>
 </li>
 </ol>
-<h4 id="2-3_1">2-3. 売上データ 前処理 / 購買年月 / カラム作成</h4>
+<h4 id="2-3_1"><span class="pheasant-header"><span class="header"><span class="title">2-3. 売上データ 前処理 / 購買年月 / カラム作成</span></span></span></h4>
 <p><code>購買日</code>カラムを元に <code>購買年月</code>カラムを作成し、集計時の集計項目として利用します</p>
 <p><em>Fig. 購買日カラムから購買年月カラムを作成</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_3_1.png" /></p>
@@ -327,7 +1051,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.time.node.convert.datetimetostring.DateTimeToStringNodeFactory">Other Data Types / Time Series /Transform / Date&amp;Time to String</a></p>
 </li>
 </ol>
-<h4 id="2-4_1">2-4. 売上データ 前処理 / 購買年月 / カラム名変更</h4>
+<h4 id="2-4_1"><span class="pheasant-header"><span class="header"><span class="title">2-4. 売上データ 前処理 / 購買年月 / カラム名変更</span></span></span></h4>
 <p><code>購買年月</code>カラムを正しい名称に変更します</p>
 <p><em>Fig. 購買年月カラム名 変更</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_4_1.png" /></p>
@@ -340,7 +1064,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.time.node.convert.datetimetostring.DateTimeToStringNodeFactory">Other Data Types / Time Series /Transform / Date&amp;Time to String</a></p>
 </li>
 </ol>
-<h4 id="2-5">2-5. 売上データ 前処理 / 商品名 / スペース除去等 (文字列処理)</h4>
+<h4 id="2-5"><span class="pheasant-header"><span class="header"><span class="title">2-5. 売上データ 前処理 / 商品名 / スペース除去等 (文字列処理)</span></span></span></h4>
 <p>各レコードの <code>商品名</code>の値が統一されていない為、<code>商品名</code> カラムの値を整形します</p>
 <ul>
 <li>スペース除去</li>
@@ -351,11 +1075,11 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ol>
 <li>Javaコードを記述する</li>
 </ol>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><code><span class="n">replace</span><span class="p">(</span>
-    <span class="n">upperCase</span><span class="p">(</span><span class="n">$item_name$</span><span class="p">),</span> <span class="s">&quot; &quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)</span>
-</code></pre></div>
-</td></tr></table>
+<div class="pheasant-fenced-code"><div class="cached"><div class="cell jupyter input"><div class="code"><pre><code class="java">replace(
+    upperCase($item_name$), &#34; &#34;, &#34;&#34;)</code></pre></div>
+<div class="report"><p><span class="count">[3]</span>
+<span class="start"></span> (<span class="time"></span>)
+<span class="right"><span class="kernel"></span> (<span class="total"></span>)</span></p></div></div></div></div>
 
 <ol>
 <li>
@@ -365,7 +1089,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.stringmanipulation.StringManipulationNodeFactory">Manipulation / Column / Convert &amp; Replace / String Manipulation</a></p>
 </li>
 </ol>
-<h4 id="2-6">2-6. 売上データ 前処理 / 商品価格 / 欠損値レコード抽出</h4>
+<h4 id="2-6"><span class="pheasant-header"><span class="header"><span class="title">2-6. 売上データ 前処理 / 商品価格 / 欠損値レコード抽出</span></span></span></h4>
 <p>商品価格カラムの <code>欠損値</code> のレコードを抽出し、除外されたレコード <em>(正しいレコード)</em> を元に欠損値を置換する値を 「2-7」からの処理で算出します。抽出した <code>欠損値</code> を保有するレコードを確認します。</p>
 <p><em>Fig. レコード分割 - 欠損値レコード抽出</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_6_1.png" /></p>
@@ -383,7 +1107,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.filter.row.RowFilter2PortNodeFactory">Manipulation / Row / Filter / Row Splitter</a></p>
 </li>
 </ol>
-<h4 id="2-7_1">2-7. 売上データ 前処理 / 商品別 商品価格 平均算出</h4>
+<h4 id="2-7_1"><span class="pheasant-header"><span class="header"><span class="title">2-7. 売上データ 前処理 / 商品別 商品価格 平均算出</span></span></span></h4>
 <p><code>item_name (商品名)</code> 別 <code>item_price (商品価格)</code> の平均値を算出します。</p>
 <p><em>Fig. 商品別 商品価格 平均算出</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_7_1.png" /></p>
@@ -399,7 +1123,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.groupby.GroupByNodeFactory">Manipulation / Row / Transform / GroupBy</a></p>
 </li>
 </ol>
-<h4 id="2-8-1">2-8. 売上データ 前処理 / 商品別 商品価格 置換-1 (テーブル連結)</h4>
+<h4 id="2-8-1"><span class="pheasant-header"><span class="header"><span class="title">2-8. 売上データ 前処理 / 商品別 商品価格 置換-1 (テーブル連結)</span></span></span></h4>
 <p>「2-2. 欠損値抽出されたレコード」 と 「2-7. 欠損値を補完するレコード」を結合します。<code>Mean(item_price)</code> カラムが欠損値を補完する値になります。</p>
 <p><em>Fig. テーブル結合 - 商品価格に欠損値が存在したレコード</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_8_1.png" /></p>
@@ -416,21 +1140,21 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <p>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.joiner.Joiner2NodeFactory">Manipulation / Column / Split &amp; Combine / Joiner</a></p>
 </li>
 </ol>
-<h4 id="2-9-2">2-9. 売上データ 前処理 / 商品別 商品価格 置換-2 (不要カラム削除)</h4>
+<h4 id="2-9-2"><span class="pheasant-header"><span class="header"><span class="title">2-9. 売上データ 前処理 / 商品別 商品価格 置換-2 (不要カラム削除)</span></span></span></h4>
 <p><code>item_price (商品価格)</code> カラムを削除対象に指定し、<code>Mean(item_price) (平均商品価格)</code> カラムを残します。</p>
 <p><em>Fig. カラムフィルター / 不要カラム削除</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_9_1.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.filter.column.DataColumnSpecFilterNodeFactory">Manipulation / Column / Filter / Column Filter</a></li>
 </ul>
-<h4 id="2-10-2">2-10. 売上データ 前処理 / 商品別 商品価格 置換-2 (カラム名変更)</h4>
+<h4 id="2-10-2"><span class="pheasant-header"><span class="header"><span class="title">2-10. 売上データ 前処理 / 商品別 商品価格 置換-2 (カラム名変更)</span></span></span></h4>
 <p>テーブル結合した後の <code>Mean(item_price) (平均商品価格)</code> カラムの名称を <code>item_price (商品価格)</code> 変更します。</p>
 <p><em>Fig. カラム名変更</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_10_1.png" /></p>
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.rename.RenameNodeFactory">Manipulation / Column / Convert &amp; Replace / Column Rename</a></li>
 </ul>
-<h4 id="2-11">2-11. 売上データ 前処理 / 商品価格 / 欠損値置換</h4>
+<h4 id="2-11"><span class="pheasant-header"><span class="header"><span class="title">2-11. 売上データ 前処理 / 商品価格 / 欠損値置換</span></span></span></h4>
 <p>「2-2. 欠損値レコード抽出処理」で 欠損値処理対象外レコードと、「2-10. 欠損値処理を行なったレコード」を一つのテーブルにします。</p>
 <p><em>Fig. レコード結合</em></p>
 <p><img alt="" src="../images/knime-1/sales_data_wf/window_2_11_1.png" /></p>
@@ -440,7 +1164,7 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 <ul>
 <li>利用ノード: <a href="https://nodepit.com/node/org.knime.base.node.preproc.append.row.AppendedRowsNodeFactory">Manipulation / Row / Transform / Concatenate</a></li>
 </ul>
-<h3 id="appendx">Appendx / 利用ノード一覧</h3>
+<h3 id="appendx"><span class="pheasant-header"><span class="header"><span class="title">Appendx / 利用ノード一覧</span></span></span></h3>
 <table>
 <thead>
 <tr>
@@ -532,43 +1256,140 @@ if (is_top_frame) { $('body').addClass('wm-top-page'); }
 </tr>
 </tbody>
 </table>
+<style>
+.md-typeset h1 {
+    margin: 0 0 2rem;
+    color: var(--md-default-fg-color--light);
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+.md-typeset h2 {
+    margin: 2rem 0 .8rem;
+    font-weight: 450;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+}
+.md-typeset h3 {
+    margin: 1.6rem 0 .8rem;
+    font-weight: 450;
+    font-size: 1.0rem;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+}
+.md-typeset h4 {
+    margin: .8rem 0;
+    f====ont-weight: 450;
+    font-size: .8rem;
+    letter-spacing: -0.01em;
+}
+.md-typeset h5, .md-typeset h6 {
+    margin: .8rem 0;
+    color: black;
+    font-weight: 450;
+    font-size: .75rem;
+    letter-spacing: -0.01em;
+}
+.md-nav {
+    font-size: .6rem;
+    line-height: 1.3;
+}
+.md-typeset {
+    font-size: .7rem;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    color-adjust: exact;
+}
+</style>
+                
+              
+              
+                
 
-  <br>
-    
 
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../" title="KNIME 概要" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                KNIME 概要
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../knime-2/" title="KNIME 入門編 / 探索的データ分析" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                KNIME 入門編 / 探索的データ分析
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            (c) 2020 <a href="https://lions-data.com">Lions Data, Ltd.</a> All rights reserved.
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
     
-    
+      <script src="../../../assets/javascripts/vendor.36cbf620.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../../assets/javascripts/worker/search.7f7c8775.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="../../../js/pheasant.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
       
     
-
-  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
-    
-    <div class="wm-article-nav pull-right">
-      <a href="../knime-2/" class="btn btn-xs btn-default pull-right">
-        Next
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      <a href="../knime-2/" class="btn btn-xs btn-link">
-        KNIME 入門編 / 探索的データ分析
-      </a>
-    </div>
-    
-    <div class="wm-article-nav">
-      <a href="../" class="btn btn-xs btn-default pull-left">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-        Previous</a><a href="../" class="btn btn-xs btn-link">
-        KNIME 概要
-      </a>
-    </div>
-    
-  </div>
-
-    <br>
-</div>
-
-<footer class="container-fluid wm-page-content"><p>(c) 2020 <a href="https://lions-data.com">Lions Data, Ltd.</a> All rights reserved.</p>
-  <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
-</footer>
-
-</body>
+  </body>
 </html>
