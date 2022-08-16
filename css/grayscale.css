@@ -63,7 +63,7 @@
     color: white;
   }
   #mainNav.navbar-shrink {
-    background-color: #fff;
+    background-color: #d0d0d0;
   }
   #mainNav.navbar-shrink .navbar-brand {
     color: #161616;
@@ -92,8 +92,12 @@
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.5)), color-stop(75%, rgba(22, 22, 22, 0.9)), to(#161616)), url("../img/bg-masthead.jpg");
-  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.5) 0%, rgba(22, 22, 22, 0.9) 75%, #161616 100%), url("../img/bg-masthead.jpg");
+  /* background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.5)), color-stop(75%, rgba(22, 22, 22, 0.9)), to(#161616)), url("../img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.5) 0%, rgba(22, 22, 22, 0.9) 75%, #161616 100%), url("../img/bg-masthead.jpg"); */
+
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.3)), color-stop(80%, rgba(22, 22, 22, 0.1)), to(#161616)), url("../img/bg-486695.jpg");
+  background: linear-gradient(to bottom, rgba(22, 22, 22, 0.3) 0%, rgba(22, 22, 22, 0.1) 80%, #161616 100%), url("../img/bg-486695.jpg");
+
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
